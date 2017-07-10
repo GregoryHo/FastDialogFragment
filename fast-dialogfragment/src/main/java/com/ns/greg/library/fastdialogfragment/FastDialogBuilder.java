@@ -36,7 +36,6 @@ public class FastDialogBuilder {
      */
     public Builder setTextSizeResId(@DimenRes int sizeResId) {
       fragment.setTextSizeResId(sizeResId);
-
       return this;
     }
 
@@ -45,7 +44,6 @@ public class FastDialogBuilder {
      */
     public Builder setLayout(@LayoutRes int layoutId) {
       args.putInt(FastDialogFragment.FIELD_LAYOUT, layoutId);
-
       return this;
     }
 
@@ -54,7 +52,6 @@ public class FastDialogBuilder {
      */
     public Builder setTitle(@StringRes int titleId) {
       args.putInt(FastDialogFragment.FIELD_TITLE_RESOURCE, titleId);
-
       return this;
     }
 
@@ -63,7 +60,6 @@ public class FastDialogBuilder {
      */
     public Builder setTitle(String title) {
       args.putString(FastDialogFragment.FIELD_TITLE_STRING, title);
-
       return this;
     }
 
@@ -72,7 +68,6 @@ public class FastDialogBuilder {
      */
     public Builder setMessage(@StringRes int stringId) {
       args.putInt(FastDialogFragment.FIELD_MESSAGE_RESOURCE, stringId);
-
       return this;
     }
 
@@ -81,7 +76,6 @@ public class FastDialogBuilder {
      */
     public Builder setMessage(String string) {
       args.putString(FastDialogFragment.FIELD_MESSAGE_STRING, string);
-
       return this;
     }
 
@@ -90,7 +84,6 @@ public class FastDialogBuilder {
      */
     public Builder setPositiveButtonLabel(@StringRes int labelId) {
       args.putInt(FastDialogFragment.FIELD_LABEL_POSITIVE_RESOURCE, labelId);
-
       return this;
     }
 
@@ -99,7 +92,6 @@ public class FastDialogBuilder {
      */
     public Builder setPositiveButtonLabel(String label) {
       args.putString(FastDialogFragment.FIELD_LABEL_POSITIVE_STRING, label);
-
       return this;
     }
 
@@ -108,7 +100,6 @@ public class FastDialogBuilder {
      */
     public Builder setNegativeButtonLabel(@StringRes int labelId) {
       args.putInt(FastDialogFragment.FIELD_LABEL_NEGATIVE_RESOURCE, labelId);
-
       return this;
     }
 
@@ -117,25 +108,22 @@ public class FastDialogBuilder {
      */
     public Builder setNegativeButtonLabel(String  label) {
       args.putString(FastDialogFragment.FIELD_LABEL_NEGATIVE_STRING, label);
-
       return this;
     }
 
     /**
      * Sets neutral button label by resource id
      */
-    public Builder setNeturalButtonLabel(@StringRes int labelId) {
+    public Builder setNeutralButtonLabel(@StringRes int labelId) {
       args.putInt(FastDialogFragment.FIELD_LABEL_NEUTRAL_RESOURCE, labelId);
-
       return this;
     }
 
     /**
      * Sets neutral button label by string
      */
-    public Builder setNeturalButtonLabel(String  label) {
+    public Builder setNeutralButtonLabel(String  label) {
       args.putString(FastDialogFragment.FIELD_LABEL_NEUTRAL_STRING, label);
-
       return this;
     }
 
@@ -144,7 +132,6 @@ public class FastDialogBuilder {
      */
     public Builder setDialogTheme(int themeId) {
       fragment.setTheme(themeId);
-
       return this;
     }
 
@@ -153,7 +140,6 @@ public class FastDialogBuilder {
      */
     public Builder setDialogAnimation(int animationId) {
       fragment.setAnimation(animationId);
-
       return this;
     }
 
@@ -164,7 +150,6 @@ public class FastDialogBuilder {
       fragment.setGravity(gravity);
       fragment.setWidth(width);
       fragment.setHeight(height);
-
       return this;
     }
 
@@ -174,7 +159,6 @@ public class FastDialogBuilder {
     public Builder setDialogPosition(int x, int y) {
       fragment.setDeltaX(x);
       fragment.setDeltaY(y);
-
       return this;
     }
 
@@ -185,7 +169,6 @@ public class FastDialogBuilder {
      */
     public Builder setSimpleDialogListener(SimpleDialogListener listener) {
       fragment.setListener(listener);
-
       return this;
     }
 
