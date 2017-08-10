@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import com.ns.greg.library.fastdialogfragment.FastDialogBuilder;
+import com.ns.greg.library.fastdialogfragment.FastDialogHelper;
 import com.ns.greg.library.fastdialogfragment.listener.SimpleDialogListener;
 
 /**
@@ -20,7 +20,7 @@ public class DemoActivity extends AppCompatActivity {
   @Override protected void onResume() {
     super.onResume();
 
-    FastDialogBuilder.builder()
+    FastDialogHelper.builder()
         .setTitle("TEST")
         .setMessage("FAST and EASY.")
         .setPositiveButtonLabel("OK")

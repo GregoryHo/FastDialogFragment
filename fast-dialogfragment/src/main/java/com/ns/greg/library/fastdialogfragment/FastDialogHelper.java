@@ -10,9 +10,9 @@ import com.ns.greg.library.fastdialogfragment.listener.SimpleDialogListener;
 /**
  * Created by Gregory on 2016/2/24.
  */
-public class FastDialogBuilder {
+public class FastDialogHelper {
 
-  private FastDialogBuilder() {
+  private FastDialogHelper() {
     throw new UnsupportedOperationException();
   }
 
@@ -170,6 +170,13 @@ public class FastDialogBuilder {
     public Builder setSimpleDialogListener(SimpleDialogListener listener) {
       fragment.setListener(listener);
       return this;
+    }
+
+    /**
+     * Build dialog fragment
+     */
+    public void build(FragmentManager fragmentManager) {
+      build(fragmentManager, "DEFAULT");
     }
 
     /**

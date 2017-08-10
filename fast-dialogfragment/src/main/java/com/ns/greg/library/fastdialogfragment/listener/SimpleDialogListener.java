@@ -6,7 +6,7 @@ import android.app.Dialog;
  * Created by Gregory on 2017/6/29.
  */
 
-public class SimpleDialogListener<T>
+public class SimpleDialogListener
     implements DialogListener.OnShowListener, DialogListener.OnDismissListener,
     DialogListener.OnButtonClickListener, DialogListener.OnItemClickListener {
 
