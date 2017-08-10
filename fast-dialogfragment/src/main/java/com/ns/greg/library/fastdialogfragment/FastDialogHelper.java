@@ -6,6 +6,7 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import com.ns.greg.library.fastdialogfragment.listener.SimpleDialogListener;
+import java.util.ArrayList;
 
 /**
  * Created by Gregory on 2016/2/24.
@@ -76,6 +77,15 @@ public class FastDialogHelper {
      */
     public Builder setMessage(String string) {
       args.putString(FastDialogFragment.FIELD_MESSAGE_STRING, string);
+      return this;
+    }
+
+    /**
+     * Sets dialog message by String list
+     */
+    public Builder setMessage(ArrayList<String> strings) {
+      args.putStringArrayList(FastDialogFragment.FIELD_LIST_ITEMS_STRING, strings);
+
       return this;
     }
 
