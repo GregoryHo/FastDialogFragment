@@ -20,8 +20,8 @@ public class FastDialogHelper {
   public static final class Builder {
 
     private final Bundle args;
-
     private final FastDialogFragment fragment;
+    private boolean cancelable = true;
 
     public Builder() {
       args = new Bundle();
@@ -112,7 +112,7 @@ public class FastDialogHelper {
     /**
      * Sets negative button label by string
      */
-    public Builder setNegativeButtonLabel(String  label) {
+    public Builder setNegativeButtonLabel(String label) {
       args.putString(FastDialogFragment.FIELD_LABEL_NEGATIVE_STRING, label);
       return this;
     }
@@ -128,7 +128,7 @@ public class FastDialogHelper {
     /**
      * Sets neutral button label by string
      */
-    public Builder setNeutralButtonLabel(String  label) {
+    public Builder setNeutralButtonLabel(String label) {
       args.putString(FastDialogFragment.FIELD_LABEL_NEUTRAL_STRING, label);
       return this;
     }
@@ -179,6 +179,16 @@ public class FastDialogHelper {
     }
 
     /**
+     * Sets dialog is cancelable or not
+     *
+     * @param cancelable true cancelable, false not
+     */
+    public Builder setCancelable(boolean cancelable) {
+      this.cancelable = cancelable;
+      return this;
+    }
+
+    /**
      * Build dialog fragment
      */
     public void build(FragmentManager fragmentManager) {
@@ -190,6 +200,7 @@ public class FastDialogHelper {
      */
     public void build(FragmentManager fragmentManager, String tag) {
       fragment.setArguments(args);
+      fragment.setCancelable(cancelable);
       fragment.show(fragmentManager, tag);
     }
   }

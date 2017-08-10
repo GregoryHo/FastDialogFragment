@@ -73,7 +73,6 @@ public class FastDialogFragment extends DialogFragment {
 
   @Override public void onCreate(Bundle savedInstance) {
     super.onCreate(savedInstance);
-    setCancelable(true);
   }
 
   @Override public Dialog onCreateDialog(Bundle savedInstance) {
