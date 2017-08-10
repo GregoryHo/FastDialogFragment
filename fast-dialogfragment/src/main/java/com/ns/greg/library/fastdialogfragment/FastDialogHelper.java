@@ -17,10 +17,6 @@ public class FastDialogHelper {
     throw new UnsupportedOperationException();
   }
 
-  public static Builder builder() {
-    return new Builder();
-  }
-
   public static final class Builder {
 
     private final Bundle args;

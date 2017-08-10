@@ -20,8 +20,7 @@ public class DemoActivity extends AppCompatActivity {
   @Override protected void onResume() {
     super.onResume();
 
-    FastDialogHelper.builder()
-        .setTitle("TEST")
+    new FastDialogHelper.Builder().setTitle("TEST")
         .setMessage("FAST and EASY.")
         .setPositiveButtonLabel("OK")
         .setNegativeButtonLabel("CANCEL")
