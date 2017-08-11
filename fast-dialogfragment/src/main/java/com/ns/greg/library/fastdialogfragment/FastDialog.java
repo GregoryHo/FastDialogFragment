@@ -11,9 +11,9 @@ import java.util.ArrayList;
 /**
  * Created by Gregory on 2016/2/24.
  */
-public class FastDialogHelper {
+public class FastDialog {
 
-  private FastDialogHelper() {
+  private FastDialog() {
     throw new UnsupportedOperationException();
   }
 
