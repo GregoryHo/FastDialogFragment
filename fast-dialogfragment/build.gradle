@@ -3,7 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 // Library version
-version = "1.0.7.sdk25"
+version = "1.0.8.s25"
 android {
   compileSdkVersion 25
   buildToolsVersion "25.0.3"
@@ -29,7 +29,7 @@ def siteUrl = 'https://github.com/GregoryHo/FastDialogFragment'
 // git repository url
 def gitUrl = 'https://github.com/GregoryHo/FastDialogFragment.git'
 // Maven Group ID for the artifact，
-group = "greg.library.fastdialogfragment"
+group = "greg.ns.library"
 install {
   repositories.mavenInstaller {
     // This generates POM.xml with proper parameters
@@ -99,6 +99,6 @@ dependencies {
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
-  compile 'com.android.support:appcompat-v7:22.2.1'
+  compile 'com.android.support:appcompat-v7:25.3.1'
   testCompile 'junit:junit:4.12'
 }
