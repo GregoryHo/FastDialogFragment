@@ -94,7 +94,7 @@ public class FastDialogFragment extends DialogFragment {
     if (args.containsKey(FIELD_TITLE_RESOURCE)) {
       builder.setTitle(args.getInt(FIELD_TITLE_RESOURCE));
     } else if (args.containsKey(FIELD_TITLE_STRING)) {
-      builder.setTitle(args.getString(FIELD_TITLE_RESOURCE));
+      builder.setTitle(args.getString(FIELD_TITLE_STRING));
     }
 
     // [DIALOG MESSAGE]
