@@ -41,30 +41,21 @@ public class FastDialogFragment extends DialogFragment {
   public static final String FIELD_LABEL_NEUTRAL_STRING = "label_neutral.str";
 
   private AlertDialog mAlertDialog;
-
   // Dialog theme
   private int theme = R.style.fast_dialog_normal_style;
-
   // Dialog animation
   private int animation = -1;
-
   // Dialog position
   private int gravity = Gravity.CENTER;
-
   // Dialog y-axis distance
   private int deltaY = 0;
-
   // Dialog x-axis distance
   private int deltaX = 0;
-
   // Screen width
   private int width = ViewGroup.LayoutParams.WRAP_CONTENT;
-
   // Screen Height
   private int height = ViewGroup.LayoutParams.WRAP_CONTENT;
-
   private int textSizeResId = R.dimen.fast_dialog_small_text_size;
-
   private SimpleDialogListener dialogListener;
 
   public static FastDialogFragment newInstance() {
@@ -262,7 +253,6 @@ public class FastDialogFragment extends DialogFragment {
 
   @Override public void onStart() {
     super.onStart();
-
     // check
     if (getDialog() == null) {
       return;
