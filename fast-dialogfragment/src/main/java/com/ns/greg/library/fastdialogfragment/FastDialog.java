@@ -9,7 +9,8 @@ import com.ns.greg.library.fastdialogfragment.listener.SimpleDialogListener;
 import java.util.ArrayList;
 
 /**
- * Created by Gregory on 2016/2/24.
+ * @author Gregory
+ * @since 2016/2/24
  */
 public class FastDialog {
 

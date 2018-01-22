@@ -3,7 +3,8 @@ package com.ns.greg.library.fastdialogfragment.listener;
 import android.app.Dialog;
 
 /**
- * Created by Gregory on 2016/8/31.
+ * @author Gregory
+ * @since 2016/8/31
  */
 public interface DialogListener {
 

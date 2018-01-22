@@ -4,7 +4,8 @@ import android.app.Dialog;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by Gregory on 2017/6/29.
+ * @author Gregory
+ * @since 2017/6/29
  */
 
 public class SimpleDialogListener<T>

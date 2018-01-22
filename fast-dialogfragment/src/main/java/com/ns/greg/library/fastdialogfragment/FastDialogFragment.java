@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Gregory on 2016/1/13.
+ * @author Gregory
+ * @since 2016/1/13
  */
 public class FastDialogFragment extends DialogFragment {
 
@@ -40,7 +41,7 @@ public class FastDialogFragment extends DialogFragment {
   public static final String FIELD_LABEL_NEUTRAL_RESOURCE = "label_neutral.res";
   public static final String FIELD_LABEL_NEUTRAL_STRING = "label_neutral.str";
 
-  private AlertDialog mAlertDialog;
+  private AlertDialog alertDialog;
   // Dialog theme
   private int theme = R.style.fast_dialog_normal_style;
   // Dialog animation
@@ -68,17 +69,16 @@ public class FastDialogFragment extends DialogFragment {
 
   @Override public Dialog onCreateDialog(Bundle savedInstance) {
     Bundle args = getArguments();
-
     //ContextThemeWrapper _context = new ContextThemeWrapper(getActivity(), getTheme());
-
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), theme);
-
     // [CUSTOM LAYOUT]
     if (args.containsKey(FIELD_LAYOUT)) {
       LayoutInflater inflater =
           (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      View content = inflater.inflate(args.getInt(FIELD_LAYOUT), null);
-      builder.setView(content);
+      if (inflater != null) {
+        View content = inflater.inflate(args.getInt(FIELD_LAYOUT), null);
+        builder.setView(content);
+      }
     }
 
     // [DIALOG TITLE]
@@ -109,9 +109,7 @@ public class FastDialogFragment extends DialogFragment {
     if (args.containsKey(FIELD_LIST_ITEMS_STRING)) {
       final ArrayList<String> listItems = args.getStringArrayList(FIELD_LIST_ITEMS_STRING);
       if (listItems != null) {
-        for (String lisItem : listItems) {
-          items.add(lisItem);
-        }
+        items.addAll(listItems);
       }
     }
 
@@ -121,7 +119,7 @@ public class FastDialogFragment extends DialogFragment {
         @Override
 				public void onClick(DialogInterface dialog, int which) {
 					if (fastDialogListener != null) {
-						fastDialogListener.onDialogItemClick(getTag(), mAlertDialog, items.get(which), which);
+						fastDialogListener.onDialogItemClick(getTag(), alertDialog, items.get(which), which);
 					}
 				}
 			});*/
@@ -180,18 +178,17 @@ public class FastDialogFragment extends DialogFragment {
           });
     }
 
-    mAlertDialog = builder.create();
-
-    return mAlertDialog;
+    alertDialog = builder.create();
+    return alertDialog;
   }
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     // Registers View.onClickListener is to interrupt event from original listener
     if (dialogListener != null) {
-      mAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+      alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
         @Override public void onShow(DialogInterface dialog) {
-          dialogListener.onShow(getTag(), mAlertDialog);
+          dialogListener.onShow(getTag(), alertDialog);
           configureTitle();
           configurePositiveButton();
           configureNegativeButton();
@@ -203,49 +200,49 @@ public class FastDialogFragment extends DialogFragment {
 
   private void configureTitle() {
     int titleDividerId = getResources().getIdentifier("titleDivider", "id", "android");
-    View titleDivider = mAlertDialog.findViewById(titleDividerId);
+    View titleDivider = alertDialog.findViewById(titleDividerId);
     if (titleDivider != null) {
       titleDivider.setBackgroundColor(getResources().getColor(android.R.color.white));
     }
   }
 
   private void configurePositiveButton() {
-    Button btnPositive = mAlertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+    Button btnPositive = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
     btnPositive.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
     btnPositive.setTextSize(TypedValue.COMPLEX_UNIT_PX,
         getResources().getDimensionPixelSize(textSizeResId));
     btnPositive.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (dialogListener != null) {
-          dialogListener.onPositiveClick(getTag(), mAlertDialog);
+          dialogListener.onPositiveClick(getTag(), alertDialog);
         }
       }
     });
   }
 
   private void configureNegativeButton() {
-    Button btnNegative = mAlertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+    Button btnNegative = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
     btnNegative.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
     btnNegative.setTextSize(TypedValue.COMPLEX_UNIT_PX,
         getResources().getDimensionPixelSize(textSizeResId));
     btnNegative.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (dialogListener != null) {
-          dialogListener.onNegativeClick(getTag(), mAlertDialog);
+          dialogListener.onNegativeClick(getTag(), alertDialog);
         }
       }
     });
   }
 
   private void configureNeutralButton() {
-    Button btnNeutral = mAlertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+    Button btnNeutral = alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
     btnNeutral.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
     btnNeutral.setTextSize(TypedValue.COMPLEX_UNIT_PX,
         getResources().getDimensionPixelSize(textSizeResId));
     btnNeutral.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         if (dialogListener != null) {
-          dialogListener.onNeutralClick(getTag(), mAlertDialog);
+          dialogListener.onNeutralClick(getTag(), alertDialog);
         }
       }
     });
@@ -253,7 +250,6 @@ public class FastDialogFragment extends DialogFragment {
 
   @Override public void onStart() {
     super.onStart();
-    // check
     if (getDialog() == null) {
       return;
     }
@@ -281,7 +277,6 @@ public class FastDialogFragment extends DialogFragment {
 
   @Override public void onDismiss(DialogInterface dialog) {
     super.onDismiss(dialog);
-
     if (dialogListener != null) {
       dialogListener.onDismiss(getTag());
     }
