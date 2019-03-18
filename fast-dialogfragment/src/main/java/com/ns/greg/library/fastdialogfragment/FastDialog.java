@@ -20,28 +20,22 @@ public class FastDialog {
 
   public static final class Builder {
 
-    private final Bundle args;
-    private final FastDialogFragment fragment;
-    private boolean cancelable = true;
+    private static final String TAG = "";
+
+    private FastDialogFragment fragment;
+    private Bundle bundle;
+    private DialogWindowProperty dialogWindowProperty;
 
     public Builder() {
-      args = new Bundle();
-      fragment = FastDialogFragment.newInstance();
-    }
-
-    /**
-     * Sets text size resource
-     */
-    public Builder setTextSizeResId(@DimenRes int sizeResId) {
-      fragment.setTextSizeResId(sizeResId);
-      return this;
+      this.fragment = new FastDialogFragment();
+      this.bundle = new Bundle();
     }
 
     /**
      * Sets layout resource
      */
     public Builder setLayout(@LayoutRes int layoutId) {
-      args.putInt(FastDialogFragment.FIELD_LAYOUT, layoutId);
+      bundle.putInt(FastDialogFragment.FIELD_LAYOUT, layoutId);
       return this;
     }
 
@@ -49,7 +43,7 @@ public class FastDialog {
      * Sets dialog title by resource
      */
     public Builder setTitle(@StringRes int titleId) {
-      args.putInt(FastDialogFragment.FIELD_TITLE_RESOURCE, titleId);
+      bundle.putInt(FastDialogFragment.FIELD_TITLE_RESOURCE, titleId);
       return this;
     }
 
@@ -57,7 +51,7 @@ public class FastDialog {
      * Sets dialog title by string
      */
     public Builder setTitle(String title) {
-      args.putString(FastDialogFragment.FIELD_TITLE_STRING, title);
+      bundle.putString(FastDialogFragment.FIELD_TITLE_STRING, title);
       return this;
     }
 
@@ -65,7 +59,7 @@ public class FastDialog {
      * Sets dialog message by resource
      */
     public Builder setMessage(@StringRes int stringId) {
-      args.putInt(FastDialogFragment.FIELD_MESSAGE_RESOURCE, stringId);
+      bundle.putInt(FastDialogFragment.FIELD_MESSAGE_RESOURCE, stringId);
       return this;
     }
 
@@ -73,7 +67,7 @@ public class FastDialog {
      * Sets dialog message by string
      */
     public Builder setMessage(String string) {
-      args.putString(FastDialogFragment.FIELD_MESSAGE_STRING, string);
+      bundle.putString(FastDialogFragment.FIELD_MESSAGE_STRING, string);
       return this;
     }
 
@@ -81,7 +75,7 @@ public class FastDialog {
      * Sets dialog message by String list
      */
     public Builder setMessage(ArrayList<String> strings) {
-      args.putStringArrayList(FastDialogFragment.FIELD_LIST_ITEMS_STRING, strings);
+      bundle.putStringArrayList(FastDialogFragment.FIELD_LIST_ITEMS_STRING, strings);
 
       return this;
     }
@@ -90,7 +84,7 @@ public class FastDialog {
      * Sets positive button label by resource
      */
     public Builder setPositiveButtonLabel(@StringRes int labelId) {
-      args.putInt(FastDialogFragment.FIELD_LABEL_POSITIVE_RESOURCE, labelId);
+      bundle.putInt(FastDialogFragment.FIELD_LABEL_POSITIVE_RESOURCE, labelId);
       return this;
     }
 
@@ -98,7 +92,7 @@ public class FastDialog {
      * Sets positive button label by string
      */
     public Builder setPositiveButtonLabel(String label) {
-      args.putString(FastDialogFragment.FIELD_LABEL_POSITIVE_STRING, label);
+      bundle.putString(FastDialogFragment.FIELD_LABEL_POSITIVE_STRING, label);
       return this;
     }
 
@@ -106,7 +100,7 @@ public class FastDialog {
      * Sets negative button label by resource id
      */
     public Builder setNegativeButtonLabel(@StringRes int labelId) {
-      args.putInt(FastDialogFragment.FIELD_LABEL_NEGATIVE_RESOURCE, labelId);
+      bundle.putInt(FastDialogFragment.FIELD_LABEL_NEGATIVE_RESOURCE, labelId);
       return this;
     }
 
@@ -114,7 +108,7 @@ public class FastDialog {
      * Sets negative button label by string
      */
     public Builder setNegativeButtonLabel(String label) {
-      args.putString(FastDialogFragment.FIELD_LABEL_NEGATIVE_STRING, label);
+      bundle.putString(FastDialogFragment.FIELD_LABEL_NEGATIVE_STRING, label);
       return this;
     }
 
@@ -122,7 +116,7 @@ public class FastDialog {
      * Sets neutral button label by resource id
      */
     public Builder setNeutralButtonLabel(@StringRes int labelId) {
-      args.putInt(FastDialogFragment.FIELD_LABEL_NEUTRAL_RESOURCE, labelId);
+      bundle.putInt(FastDialogFragment.FIELD_LABEL_NEUTRAL_RESOURCE, labelId);
       return this;
     }
 
@@ -130,42 +124,30 @@ public class FastDialog {
      * Sets neutral button label by string
      */
     public Builder setNeutralButtonLabel(String label) {
-      args.putString(FastDialogFragment.FIELD_LABEL_NEUTRAL_STRING, label);
+      bundle.putString(FastDialogFragment.FIELD_LABEL_NEUTRAL_STRING, label);
       return this;
     }
 
     /**
-     * Sets the dialog theme
+     * Sets text size resource
      */
-    public Builder setDialogTheme(int themeId) {
-      fragment.setTheme(themeId);
+    public Builder setTextSizeResId(@DimenRes int sizeResId) {
+      bundle.putInt(FastDialogFragment.FIELD_TEXT_SIZE, sizeResId);
+      return this;
+    }
+
+    public Builder setDialogWindowProperty(DialogWindowProperty dialogWindowProperty) {
+      this.dialogWindowProperty = dialogWindowProperty;
       return this;
     }
 
     /**
-     * Sets the dialog animation
+     * Sets dialog is cancelable or not
+     *
+     * @param cancelable true cancelable, false not
      */
-    public Builder setDialogAnimation(int animationId) {
-      fragment.setAnimation(animationId);
-      return this;
-    }
-
-    /**
-     * Sets dialog window configuration
-     */
-    public Builder setDialogWindowConfiguration(int gravity, int width, int height) {
-      fragment.setGravity(gravity);
-      fragment.setWidth(width);
-      fragment.setHeight(height);
-      return this;
-    }
-
-    /**
-     * Sets dialog position according by x and y axis
-     */
-    public Builder setDialogPosition(int x, int y) {
-      fragment.setDeltaX(x);
-      fragment.setDeltaY(y);
+    public Builder setCancelable(boolean cancelable) {
+      this.fragment.setCancelable(cancelable);
       return this;
     }
 
@@ -180,28 +162,22 @@ public class FastDialog {
     }
 
     /**
-     * Sets dialog is cancelable or not
-     *
-     * @param cancelable true cancelable, false not
-     */
-    public Builder setCancelable(boolean cancelable) {
-      this.cancelable = cancelable;
-      return this;
-    }
-
-    /**
      * Build dialog fragment
      */
     public void build(FragmentManager fragmentManager) {
-      build(fragmentManager, "DEFAULT");
+      build(fragmentManager, TAG);
     }
 
     /**
      * Build dialog fragment
      */
     public void build(FragmentManager fragmentManager, String tag) {
-      fragment.setArguments(args);
-      fragment.setCancelable(cancelable);
+      if (dialogWindowProperty == null) {
+        dialogWindowProperty = new DialogWindowProperty.Builder().build();
+      }
+      /* put property */
+      bundle.putParcelable(FastDialogFragment.FIELD_WINDOW_PROPERTY, dialogWindowProperty);
+      fragment.setArguments(bundle);
       fragment.show(fragmentManager, tag);
     }
   }
